@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="logo.svg">
+  <img src="logo.svg" width="150px">
 </div>
 
 Aim is a personal planning system that turns goals into actions.
