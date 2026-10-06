@@ -1,4 +1,6 @@
-# Aim
+<div align="center">
+  <img src="logo.svg">
+</div>
 
 Aim is a personal planning system that turns goals into actions.
 
