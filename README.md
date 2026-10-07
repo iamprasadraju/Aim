@@ -2,6 +2,8 @@
   <img src="logo.svg" width="150px">
 </div>
 
+<br> 
+
 Aim is a personal planning system that turns goals into actions.
 
 > A system for figuring out what to do next.
