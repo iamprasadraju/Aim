@@ -1,4 +1,8 @@
 from pathlib import Path
+from datetime import datetime, timezone
+import zoneinfo
+
+import json
 
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
@@ -50,6 +54,35 @@ def oauth_gcal():
         credentials=credentials,
     )
 
+def get_today_events():
+    service = oauth_gcal()
 
+    now = datetime.now(timezone.utc)
+    time_min = datetime.today().replace(hour=0, minute=0, second=0).isoformat() + 'Z'
+    time_max = datetime.today().replace(hour=23, minute=59, second=59).isoformat() + 'Z'
+    print(time_min, time_max)
+
+    events_result = service.events().list(
+        calendarId='primary',
+        timeMin=time_min,
+        timeMax=time_max,
+        singleEvents=True,
+        orderBy='startTime'
+    ).execute()
+
+    today_events = events_result.get('items', [])
+
+    if not today_events:
+        print("no events for today!")
+        return
+
+    # print(json.dumps(today_events, indent=4))
+
+    for event in today_events:
+        print(event.get("summary"))
+    
+    
+    
 if __name__ == "__main__":
-    get_calendar()
+    # oauth_gcal()
+    get_today_events()
